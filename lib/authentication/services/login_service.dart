@@ -17,4 +17,8 @@ class LoginService {
     await _auth.createUserWithEmailAndPassword(
         email: email, password: password);
   }
+
+  Future<void> resetPassword(String email) async {
+    await _auth.sendPasswordResetEmail(email: email);
+  }
 }
