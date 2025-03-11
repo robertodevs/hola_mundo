@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hola_mundo/authentication/blocs/login_bloc.dart';
 import 'package:hola_mundo/authentication/pages/login_screen.dart';
-import 'package:hola_mundo/home_screen.dart';
+import 'package:hola_mundo/common/pages/notifications_screen.dart';
+import 'package:hola_mundo/common/pages/add_product_screen.dart';
+import 'package:hola_mundo/root_screen.dart';
 import 'package:hola_mundo/injector.dart';
 
 class CustomRouter extends InheritedWidget {
@@ -36,9 +38,21 @@ class CustomerRouterData extends ChangeNotifier
               }
 
               Injector.register<User>(user);
-              return const HomeScreen();
+              return const RootScreen();
             },
           );
+        },
+      ),
+      GoRoute(
+        path: '/notifications',
+        builder: (BuildContext context, GoRouterState state) {
+          return const NotificationsScreen();
+        },
+      ),
+      GoRoute(
+        path: '/add-product',
+        builder: (BuildContext context, GoRouterState state) {
+          return const AddProductScreen();
         },
       ),
     ],
