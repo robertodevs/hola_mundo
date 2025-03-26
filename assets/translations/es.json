@@ -1,0 +1,17 @@
+{
+    "app": {
+        "name": "Hola Mundo"
+    },
+    "home": {
+        "title": "Inicio"
+    },
+    "search": {
+        "title": "Buscar"
+    },
+    "profile": {
+        "title": "Perfil"
+    },
+    "settings": {
+        "title": "Configuración"
+    }
+}

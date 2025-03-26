@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hola_mundo/common/blocs/home_bloc.dart';
 import 'package:hola_mundo/common/pages/home_screen.dart';
@@ -62,18 +63,18 @@ class _RootScreenState extends State<RootScreen> {
           currentIndex = index;
         });
       },
-      items: const [
+      items: [
         BottomNavigationBarItem(
           icon: Icon(Icons.home),
-          label: 'Home',
+          label: 'home.title'.tr(),
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.search),
-          label: 'Search',
+          label: 'search.title'.tr(),
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.person),
-          label: 'Profile',
+          label: 'profile.title'.tr(),
         ),
       ],
     );
