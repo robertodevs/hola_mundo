@@ -1,0 +1,17 @@
+{
+    "app": {
+        "name": "你好世界"
+    },
+    "home": {
+        "title": "首页"
+    },
+    "search": {
+        "title": "搜索"
+    },
+    "profile": {
+        "title": "个人资料"
+    },
+    "settings": {
+        "title": "设置"
+    }
+}

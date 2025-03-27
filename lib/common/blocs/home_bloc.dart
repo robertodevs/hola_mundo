@@ -1,11 +1,12 @@
 import 'package:hola_mundo/common/models/notification.dart';
 import 'package:hola_mundo/common/models/product.dart';
+import 'package:hola_mundo/common/services/error_service.dart';
 import 'package:hola_mundo/common/services/home_service.dart';
-import 'package:flutter/foundation.dart';
+import 'package:hola_mundo/injector.dart';
 
 class HomeBloc {
   final HomeService _homeService = HomeService();
-
+  final ErrorService _errorService = Injector.get<ErrorService>();
   Future<List<Product>> getProducts() async {
     final products = await _homeService.getProducts();
     return products;
@@ -37,8 +38,10 @@ class HomeBloc {
         price: price,
         imageUrl: imageUrl,
       );
+      // mock error
+      throw Exception('Error adding product');
     } catch (e) {
-      debugPrint('Error adding product: $e');
+      _errorService.logNonFatalError(e.toString(), StackTrace.current);
       rethrow;
     }
   }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hola_mundo/common/blocs/home_bloc.dart';
 import 'package:hola_mundo/common/models/product.dart';
+import 'package:hola_mundo/common/widgets/product_skeleton.dart';
 import 'package:hola_mundo/injector.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -35,44 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 10),
-              StreamBuilder<List<Product>>(
-                stream: homeBloc.streamProducts(),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const Center(child: CircularProgressIndicator());
-                  }
-
-                  if (snapshot.hasError) {
-                    return const Text('Error');
-                  }
-
-                  final products = snapshot.data;
-                  if (products == null) {
-                    return const SizedBox.shrink();
-                  }
-
-                  if (products.isEmpty) {
-                    return const SizedBox.shrink();
-                  }
-
-                  return SizedBox(
-                    height: 200,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: products.length,
-                      itemBuilder: (context, index) {
-                        return _buildProductCard(
-                          index,
-                          products[index].image,
-                          products[index].name,
-                          products[index].price.toString(),
-                          products[index].description,
-                        );
-                      },
-                    ),
-                  );
-                },
-              ),
+              _buildProducts(),
               const SizedBox(height: 10),
               SizedBox(
                 height: 175,
@@ -134,6 +98,47 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildProducts() {
+    return StreamBuilder<List<Product>>(
+      stream: homeBloc.streamProducts(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const ProductSkeleton();
+        }
+
+        if (snapshot.hasError) {
+          return const Text('Error');
+        }
+
+        final products = snapshot.data;
+        if (products == null) {
+          return const SizedBox.shrink();
+        }
+
+        if (products.isEmpty) {
+          return const SizedBox.shrink();
+        }
+
+        return SizedBox(
+          height: 200,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: products.length,
+            itemBuilder: (context, index) {
+              return _buildProductCard(
+                index,
+                products[index].image,
+                products[index].name,
+                products[index].price.toString(),
+                products[index].description,
+              );
+            },
+          ),
+        );
+      },
     );
   }
 
