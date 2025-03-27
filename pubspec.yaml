@@ -35,6 +35,9 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   font_awesome_flutter: ^10.8.0
   cupertino_icons: ^1.0.8
+  custom_design_system:
+    path: ./custom_design_system
+  device_preview: ^1.2.0
   get_it: ^8.0.3
   lottie: ^3.3.1
   firebase_auth: ^5.4.2
@@ -47,9 +50,24 @@ dependencies:
   flutter_local_notifications: ^18.0.1
   shimmer: ^3.0.0
 
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/app_icon.png"
+  min_sdk_android: 21 # android min sdk min:16, default 21
+  remove_alpha_ios: true
+  web:
+    generate: false
+    image_path: "assets/app_icon.png"
+    background_color: "#ffffff"
+    theme_color: "#477DFD"
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+  flutter_launcher_icons: ^0.13.1
+  flutter_native_splash: ^2.3.13
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -100,3 +118,15 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+flutter_native_splash:
+  background_image: assets/background.png
+  image: assets/app_icon_white.png
+  background_image_dark: assets/background.png
+  image_dark: assets/app_icon_white.png
+
+  android_12:
+    image: assets/app_icon_white.png
+    icon_background_color: "#FFD700"
+    image_dark: assets/app_icon_white.png
+    icon_background_color_dark: "#FFD700"
+  web: false

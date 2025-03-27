@@ -1,3 +1,4 @@
+import 'package:custom_design_system/custom_design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:hola_mundo/common/blocs/home_bloc.dart';
 import 'package:hola_mundo/injector.dart';
@@ -66,18 +67,9 @@ class _AddProductScreenState extends State<AddProductScreen> {
         child: ListView(
           padding: const EdgeInsets.all(16),
           children: [
-            TextFormField(
+            DSInput(
+              labelText: 'Product Name',
               controller: _nameController,
-              decoration: const InputDecoration(
-                labelText: 'Product Name',
-                border: OutlineInputBorder(),
-              ),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter a product name';
-                }
-                return null;
-              },
             ),
             const SizedBox(height: 16),
             TextFormField(

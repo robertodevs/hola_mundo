@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:device_preview/device_preview.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -45,15 +46,21 @@ void main() async {
   await runZonedGuarded(
     () async {
       runApp(
-        EasyLocalization(
-          supportedLocales: const [
-            Locale('en', 'US'),
-            Locale('es'),
+        DevicePreview(
+          enabled: true,
+          tools: const [
+            ...DevicePreview.defaultTools,
           ],
-          path: 'assets/translations',
-          fallbackLocale: const Locale('en', 'US'),
-          child: CustomRouter(
-            child: const MyApp(),
+          builder: (context) => EasyLocalization(
+            supportedLocales: const [
+              Locale('en', 'US'),
+              Locale('es'),
+            ],
+            path: 'assets/translations',
+            fallbackLocale: const Locale('en', 'US'),
+            child: CustomRouter(
+              child: const MyApp(),
+            ),
           ),
         ),
       );
